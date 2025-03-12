@@ -24,13 +24,12 @@ def get_data_points(documents: list[Document]) -> list[DataPoint]:
 
 
 REPHRASE_PROMPT = """\
-Given the following conversation and a follow up question, rephrase the follow up \
-question to be a standalone question.
+以下の会話に基づいて、フォローアップ質問を独立した質問に言い換えてください。
 
-Chat History:
+チャット履歴:
 {chat_history}
-Follow Up Input: {question}
-Standalone Question:"""
+フォローアップ質問: {question}
+独立した質問:"""
 
 CONTEXT_PROMPT = """\
 あなたは勤怠と契約が辻褄が合っているか確認するアシスタントです。​
@@ -240,9 +239,11 @@ CONTEXT_PROMPT = """\
 
 氏 名：山田 花子 印​\
 
-User Question: {input}
+# ユーザーの質問
+ユーザーの質問: {input}
 
-Chatbot Response:"""
+# チャットボットの応答
+チャットボットの応答:"""
 
 
 class RAG(ApproachesBase):
