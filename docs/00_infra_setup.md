@@ -136,9 +136,19 @@
    - リージョン: japaneast
    - サブスクリプション: 運用基盤サブスクリプション
   
-8の終了後、先に01_branch_strategyの手順でアプリのデプロイをGitHubActionsで行った後に9の手順に進みます。
+   8の終了後、先に01_branch_strategyの手順でアプリのデプロイをGitHubActionsで行った後に9の手順に進みます。
+    
+   デプロイの際にAzure OpenAIのデプロイに失敗する場合はAzure OpenAIのリソース・Azure OpenAIに関連するプライベートDNSゾーンを削除して再度```azd provision```でデプロイしなおしてください。  
+   Azure OpenAIを削除しなおす際は以下の画面にある「削除されたリソースの管理」に削除したAzure OpenAIリソースが残っているため、こちらの削除も行う必要があります。
+   
+   ![image](https://github.com/user-attachments/assets/bd1c4651-f2ff-4533-ad17-c8b9268afe6b)
+   
 
-9. データの追加
+   MongoDBのデプロイに失敗する場合は、デプロイに失敗したMongoDBのリソースを削除し、一度ポータルで別リージョンに手動でMongoDBを作成します。
+   その後、手動作成したMongoDBを削除して、再度```azd provision```でデプロイしなおしてください。  
+
+
+10. データの追加
    MongoDB に RAG 用のデータを追加します。
 
    - WebApp の SSH ターミナルにアクセスします。
@@ -150,7 +160,7 @@
      python ./scripts/add_data.py  --file="./data/food_items.json"
      ```
 
-10. 動作確認
+11. 動作確認
 
    webapp の URL にアクセスして動作確認を行います。
 
